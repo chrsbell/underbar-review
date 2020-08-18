@@ -38,8 +38,14 @@
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
+    if (n === 0) {
+      return [];
+    }
     if (!n) {
       return array[array.length - 1];
+    }
+    if (n > array.length - 1 ) {
+      return array;
     }
     return array.slice(array.length - n);
   };
@@ -136,6 +142,14 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+    if (accumulator === undefined) {
+      return _.reduce(collection.slice(1), iterator, collection[0]);
+    }
+    _.each(collection, function(item) {
+      accumulator = iterator(accumulator, item);
+    });
+
+    return accumulator;
   };
 
   // Determine if the array or object contains a given value (using `===`).

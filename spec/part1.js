@@ -33,7 +33,7 @@
     describe('first', function() {
 
       it('should be able to pull out the first element of an array', function() {
-        expect(_.first([1, 2, 3])).to.equal([1]);
+        expect(_.first([1, 2, 3])).to.equal(1);
       });
 
       it('should accept an index argument', function() {
@@ -58,7 +58,7 @@
       });
 
       it('should accept an index argument', function() {
-        expect(_.last([1, 2, 3], 2)).to.eql([2,3]);
+        expect(_.last([1, 2, 3], 2)).to.eql([2, 3]);
       });
 
       it('should return empty array if zero is passed in as the index', function() {
@@ -379,7 +379,7 @@
       });
 
       it('should apply a function to every value in an array', function() {
-        var multiplyByTwo = FILL_ME_IN;
+        var multiplyByTwo = function(value) { return value * 2; };
 
         expect(_.map([1, 2, 3], multiplyByTwo)).to.eql([2, 4, 6]);
       });
@@ -402,7 +402,7 @@
           { name: 'curly', age: 50 }
         ];
 
-        expect(_.pluck(people, 'name')).to.FILL_ME_IN(['moe', 'curly']);
+        expect(_.pluck(people, 'name')).to.equal(['moe', 'curly']);
       });
 
       it('should not modify the original array', function() {
@@ -413,7 +413,7 @@
 
         _.pluck(people, 'name');
 
-        expect(people).to.FILL_ME_IN([{ name: 'moe', age: 30 }, { name: 'curly', age: 50 }]);
+        expect(people).to.equal([{ name: 'moe', age: 30 }, { name: 'curly', age: 50 }]);
       });
     });
 
@@ -470,14 +470,20 @@
         var orderTraversed = [];
 
         _.reduce([1, 2, 3, 4], function(memo, item) {
-          // FILL_ME_IN
+          console.log("logging order", memo, item)
+          orderTraversed.push(item)
           // Add a line here that makes this test pass
           // for a working implementation of reduce
           return memo;
         }, 10);
 
+        console.log("logging order traversed", orderTraversed)
+
         expect(orderTraversed).to.eql([1, 2, 3, 4]);
       });
+
+
+
 
       it('should continue to call iterator even if the iterator returns undefined', function() {
         var callCount = 0;
